@@ -17,9 +17,9 @@ type Grafo{PropiedadesNodo,PropiedadesArista}
 	end
 end
 
-
-function agregar_nodo(grafo::Grafo,clave::AbstractString,nodo::Nodo)
+function agregar_nodo(grafo::Grafo,clave::AbstractString,prop::Any)
 	if !haskey(grafo.nodos,clave)
+		nodo = Nodo(prop,Dict{AbstractString,AbstractString}())
 		grafo.nodos[clave]=nodo
 		grafo.tamanio += 1
 	end
@@ -51,6 +51,10 @@ function arista_existe_id(grafo::Grafo, id_arista::AbstractString)
 	return haskey(grafo.aristas,id_arista)
 end
 
+function nodo_obtener(grafo::Grafo, clave::AbstractString)
+	pertenece(grafo,clave) && return grafo.nodos[clave].propiedades
+	return false # en caso de que no exista
+end
 function arista_obtener(grafo::Grafo, origen::AbstractString, destino::AbstractString)
 	arista_existe(grafo,origen,destino) && return grafo.aristas[grafo.nodos[origen].adyacentes[destino]]
 	return false # en caso de que no exista
@@ -70,4 +74,14 @@ function borrar_arista(grafo::Grafo,clave_origen::AbstractString,clave_destino::
 	if haskey(grafo.nodos,clave_origen) && haskey(grafo.nodos,clave_destino)
 		delete!(grafo.nodos[clave_origen].adyacentes,clave_destino)
 	end
+end
+
+function obtener_nodos(grafo::Grafo)
+	return keys(grafo.nodos)
+end
+function obtener_aristas(grafo::Grafo)
+	return keys(grafo.aristas)
+end
+function obtener_obj_aristas(grafo::Grafo)
+	return values(grafo.aristas)
 end
