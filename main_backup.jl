@@ -3,13 +3,14 @@ using DataStructures
 #include("datastructures/heaps/binary_heap.jl")
 #include("datastructures/disjoint_set.jl")
 include("archivos.jl")
+include("export_kml.jl")
+include("a_estrella.jl")
 
 grafo = Grafo{Ciudad,Ruta}()
 
-
 procesar_ciudades(grafo, "ciudades.csv")
 
-#print(grafo.tamanio)
+print(grafo.tamanio)
 
 procesar_rutas(grafo, "rutas.csv")
 
@@ -38,6 +39,7 @@ prueba("Obtener arista es falso", arista_obtener(grafo,"6","2") == false)
 
 prueba("Obtener valor da bien",arista_obtener(grafo,"1","2").puntaje == 1526342)
 
+<<<<<<< HEAD
 #elegimos las rutas a considerar
 
 
@@ -74,3 +76,28 @@ while num_groups(conj_disj_nodos) < length(conj_disj_nodos)
 end
 #ahora esta todo en grafo_final
 #hay que imprimirlo..
+=======
+
+#Camino minimo entre ciudad 1 y ciudad 2
+camino,costo = a_estrella(grafo,"1","2")
+
+caminito = Grafo{Ciudad,Ruta}()
+for (destino,origen) in camino
+	if (origen == Void)
+		continue
+	end
+	nodo_origen = Nodo_Ciudad(grafo.nodos[origen].propiedades,Dict())
+
+	nodo_destino = Nodo_Ciudad(grafo.nodos[destino].propiedades,Dict())
+
+	id_tramo = grafo.nodos[origen].adyacentes[destino]
+	tramo = grafo.aristas[id_tramo]
+	agregar_nodo(caminito,origen,nodo_origen)
+	agregar_nodo(caminito,destino,nodo_destino)
+	agregar_arista(caminito,origen,destino,id_tramo,tramo)
+end
+
+
+exportar_grafo_kml(caminito,"caminito.kml")
+exportar_grafo_kml(grafo,"grafo_prueba.kml")
+>>>>>>> a47cced7ac19e2489aea294e7c5ecaee42b6e77f
