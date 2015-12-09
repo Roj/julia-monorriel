@@ -33,9 +33,13 @@ function procesar_rutas(mapa::Grafo, nombre_archivo::AbstractString)
 		id_ciudad_2 = convert(Int64,rutas[i,:][3]) #idem
 		puntaje = rutas[i,:][4]
 		distancia = rutas[i,:][5]
-		score = armar_score(distancia,puntaje)
+		suma_poblacion = nodo_obtener(mapa,string(id_ciudad_1)).habitantes + nodo_obtener(mapa,string(id_ciudad_2)).habitantes
+
+		score = armar_score(distancia,puntaje,suma_poblacion)
+		
 		ruta = Ruta(id,id_ciudad_1,id_ciudad_2,puntaje,distancia,score)
 		#void agregar_arista(Grafo grafo, String origen, String destino, String id, Void* Objeto)
+
 		agregar_arista(mapa,string(id_ciudad_1),string(id_ciudad_2),string(id),ruta)
 
 		

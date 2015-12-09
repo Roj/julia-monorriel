@@ -85,3 +85,10 @@ end
 function obtener_obj_aristas(grafo::Grafo)
 	return values(grafo.aristas)
 end
+
+function cantidad_aristas(grafo::Grafo)
+	return length(grafo.aristas)
+end
+function cantidad_nodos(grafo::Grafo)
+	return length(grafo.nodos)
+end

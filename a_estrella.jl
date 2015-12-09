@@ -8,14 +8,14 @@ end
 
 function a_estrella(mapa::Grafo, id_comienzo::AbstractString, id_objetivo::AbstractString)
 	cola = PriorityQueue()
-	enqueue!(cola,id_comienzo,0)
+	Collections.enqueue!(cola,id_comienzo,0)
 	origen = Dict()
 	costo = Dict()
 	origen[id_comienzo] = Void
 	costo[id_comienzo] = 0
 	objetivo = mapa.nodos[id_objetivo]
 	while !(isempty(cola))
-		id_actual = dequeue!(cola)
+		id_actual = Collections.dequeue!(cola)
 		if id_actual == id_objetivo
 			break
 		end
@@ -34,7 +34,7 @@ function a_estrella(mapa::Grafo, id_comienzo::AbstractString, id_objetivo::Abstr
 				siguiente = mapa.nodos[id_siguiente]
 				costo[id_siguiente] = nuevo_costo
 				prioridad = nuevo_costo + heuristica(objetivo,siguiente)
-				enqueue!(cola,id_siguiente,prioridad)
+				Collections.enqueue!(cola,id_siguiente,prioridad)
 				origen[id_siguiente] = id_actual
 			end
 		end
