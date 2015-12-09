@@ -39,7 +39,6 @@ prueba("Obtener arista es falso", arista_obtener(grafo,"6","2") == false)
 
 prueba("Obtener valor da bien",arista_obtener(grafo,"1","2").puntaje == 1526342)
 
-<<<<<<< HEAD
 #elegimos las rutas a considerar
 
 
@@ -54,7 +53,7 @@ nodos = obtener_nodos(grafo)
 grafo_final = Grafo{Ciudad,Ruta}()
 
 
-heap_aristas = BinaryHeap{Ruta}(comparar_rutas,aristas)
+heap_aristas = BinaryHeap(comparar_rutas,aristas)
 conj_disj_nodos = DisjointSets{AbstractString}(nodos)
 
 threshold = 15
@@ -76,7 +75,7 @@ while num_groups(conj_disj_nodos) < length(conj_disj_nodos)
 end
 #ahora esta todo en grafo_final
 #hay que imprimirlo..
-=======
+
 
 #Camino minimo entre ciudad 1 y ciudad 2
 camino,costo = a_estrella(grafo,"1","2")
@@ -100,4 +99,3 @@ end
 
 exportar_grafo_kml(caminito,"caminito.kml")
 exportar_grafo_kml(grafo,"grafo_prueba.kml")
->>>>>>> a47cced7ac19e2489aea294e7c5ecaee42b6e77f
