@@ -60,7 +60,6 @@ function arista_obtener(grafo::Grafo, origen::AbstractString, destino::AbstractS
 	return false # en caso de que no exista
 end
 
-#esto no va a funcionar(se puede corregir despues, no es necesario por ahora..)
 function borrar_nodo(grafo::Grafo,clave::AbstractString)
 	if haskey(grafo.nodos,clave)
 		for nodo in values(grafo.nodos)

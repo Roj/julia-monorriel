@@ -22,8 +22,6 @@ function a_estrella(mapa::Grafo, id_comienzo::AbstractString, id_objetivo::Abstr
 		for (id_siguiente,id_ruta) in mapa.nodos[id_actual].adyacentes
 			nuevo_costo = costo[id_actual] + mapa.aristas[id_ruta].distancia
 
-			#ESTA ASQUEROSO ESTO, CODEARLO MAS LINDO
-			
 			nuevo_costo_es_menor = false
 			if (id_siguiente in keys(costo))
 				if nuevo_costo<costo[id_siguiente]

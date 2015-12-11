@@ -23,7 +23,6 @@ function armar_score(distancia::Float64,puntaje::Float64,poblacion::Int64)
 	return (poblacion *4pi*10.0^(-7) * puntaje)/sqrt(distancia)
 end
 
-#sera un heap de maximo asi?
 function comparar_rutas(ruta1::Ruta,ruta2::Ruta)
 	if ruta1.score < ruta2.score
 		return -1

@@ -38,8 +38,7 @@ function procesar_rutas(mapa::Grafo, nombre_archivo::AbstractString)
 		score = armar_score(distancia,puntaje,suma_poblacion)
 		
 		ruta = Ruta(id,id_ciudad_1,id_ciudad_2,puntaje,distancia,score)
-		#void agregar_arista(Grafo grafo, String origen, String destino, String id, Void* Objeto)
-
+		
 		agregar_arista(mapa,string(id_ciudad_1),string(id_ciudad_2),string(id),ruta)
 
 		
